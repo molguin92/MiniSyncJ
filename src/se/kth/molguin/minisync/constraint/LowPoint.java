@@ -20,4 +20,7 @@
 package se.kth.molguin.minisync.constraint;
 
 public class LowPoint extends BasePoint {
+    public LowPoint(double x, double y) {
+        super(x, y);
+    }
 }

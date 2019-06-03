@@ -20,4 +20,29 @@
 package se.kth.molguin.minisync.constraint;
 
 public class Line {
+    public final HighPoint highPoint;
+    public final LowPoint lowPoint;
+
+    public final double A;
+    public final double B;
+
+    public Line(LowPoint low, HighPoint high) {
+
+        assert low.x != high.x; // TODO maybe not use assertions
+
+        this.lowPoint = low;
+        this.highPoint = high;
+
+        this.A = (low.y - high.y) / (low.x - high.x);
+        this.B = low.y - (this.A * low.x);
+    }
+
+    public Line(HighPoint high, LowPoint low) {
+        this(low, high);
+    }
+
+    public boolean equals(Line o) {
+        return this.A == o.A && this.B == o.B;
+    }
+
 }

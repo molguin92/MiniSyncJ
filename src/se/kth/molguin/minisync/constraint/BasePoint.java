@@ -19,5 +19,12 @@
 
 package se.kth.molguin.minisync.constraint;
 
-abstract class BasePoint implements IPoint {
+abstract class BasePoint {
+    public final double x;
+    public final double y;
+
+    BasePoint(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
 }

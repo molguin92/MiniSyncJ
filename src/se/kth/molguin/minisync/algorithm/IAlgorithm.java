@@ -20,4 +20,13 @@
 package se.kth.molguin.minisync.algorithm;
 
 interface IAlgorithm {
+    void addDataPoint(double To, double Tb, double Tr);
+
+    double getDrift();
+
+    double getDriftError();
+
+    double getOffset();
+
+    double getOffsetError();
 }

@@ -19,12 +19,17 @@
 
 package se.kth.molguin.minisync.constraint;
 
-abstract class BasePoint {
+abstract class Point implements Comparable<Point> {
     public final double x;
     public final double y;
 
-    BasePoint(double x, double y) {
+    Point(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        return Double.compare(this.x, o.x);
     }
 }

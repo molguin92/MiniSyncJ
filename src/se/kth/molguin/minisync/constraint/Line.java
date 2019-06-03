@@ -20,6 +20,12 @@
 package se.kth.molguin.minisync.constraint;
 
 public class Line {
+    public enum TYPE {
+        LOW_TO_HIGH,
+        HIGH_TO_LOW;
+    }
+
+    public final TYPE type;
     public final HighPoint highPoint;
     public final LowPoint lowPoint;
 
@@ -35,6 +41,11 @@ public class Line {
 
         this.A = (low.y - high.y) / (low.x - high.x);
         this.B = low.y - (this.A * low.x);
+
+        if (low.x < high.x)
+            this.type = TYPE.LOW_TO_HIGH;
+        else
+            this.type = TYPE.HIGH_TO_LOW;
     }
 
     public Line(HighPoint high, LowPoint low) {

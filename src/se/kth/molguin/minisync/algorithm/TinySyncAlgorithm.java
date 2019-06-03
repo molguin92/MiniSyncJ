@@ -19,5 +19,49 @@
 
 package se.kth.molguin.minisync.algorithm;
 
+import se.kth.molguin.minisync.constraint.HighPoint;
+import se.kth.molguin.minisync.constraint.Line;
+import se.kth.molguin.minisync.constraint.LowPoint;
+
+import java.util.function.Predicate;
+
 public class TinySyncAlgorithm extends BaseAlgorithm {
+    @Override
+    void cleanup() {
+
+        this.low_points.removeIf(new Predicate<LowPoint>() {
+            @Override
+            public boolean test(LowPoint lp) {
+                return TinySyncAlgorithm.this.current_high.lowPoint != lp &&
+                        TinySyncAlgorithm.this.current_low.lowPoint != lp;
+            }
+        });
+
+        this.high_points.removeIf(new Predicate<HighPoint>() {
+            @Override
+            public boolean test(HighPoint hp) {
+                return TinySyncAlgorithm.this.current_high.highPoint != hp &&
+                        TinySyncAlgorithm.this.current_low.highPoint != hp;
+            }
+        });
+
+        this.high_constraints.removeIf(new Predicate<Line>() {
+            @Override
+            public boolean test(Line line) {
+                return !(TinySyncAlgorithm.this.high_points.contains(line.highPoint) &&
+                        TinySyncAlgorithm.this.low_points.contains(line.lowPoint));
+
+            }
+        });
+
+        this.low_constraints.removeIf(new Predicate<Line>() {
+            @Override
+            public boolean test(Line line) {
+                return !(TinySyncAlgorithm.this.high_points.contains(line.highPoint) &&
+                        TinySyncAlgorithm.this.low_points.contains(line.lowPoint));
+
+            }
+        });
+
+    }
 }

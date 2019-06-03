@@ -19,5 +19,5 @@
 
 package se.kth.molguin.minisync.algorithm;
 
-public class MiniSyncAlgorithm extends BaseAlgorithm {
+public abstract class MiniSyncAlgorithm extends BaseAlgorithm {
 }

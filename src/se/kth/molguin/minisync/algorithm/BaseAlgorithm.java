@@ -29,13 +29,13 @@ import java.util.TreeSet;
 
 abstract class BaseAlgorithm implements IAlgorithm {
 
-    private final Set<Line> low_constraints;
-    private final Set<Line> high_constraints;
-    private final Set<HighPoint> high_points;
-    private final Set<LowPoint> low_points;
+    protected final Set<Line> low_constraints;
+    protected final Set<Line> high_constraints;
+    protected final Set<HighPoint> high_points;
+    protected final Set<LowPoint> low_points;
 
-    private Line current_high;
-    private Line current_low;
+    protected Line current_high;
+    protected Line current_low;
 
     private Value offset;
     private Value drift;
@@ -137,5 +137,25 @@ abstract class BaseAlgorithm implements IAlgorithm {
             this.value = 0;
             this.error = 0;
         }
+    }
+
+    @Override
+    public double getDrift() {
+        return this.drift.value;
+    }
+
+    @Override
+    public double getDriftError() {
+        return this.drift.error;
+    }
+
+    @Override
+    public double getOffset() {
+        return this.offset.value;
+    }
+
+    @Override
+    public double getOffsetError() {
+        return this.offset.error;
     }
 }

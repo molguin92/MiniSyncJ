@@ -25,6 +25,13 @@ import se.kth.molguin.minisync.constraint.LowPoint;
 
 import java.util.function.Predicate;
 
+/**
+ * Implementation of the basic TinySync algorithm described in
+ * <p>
+ * [1] S. Yoon, C. Veerarittiphan, and M. L. Sichitiu. 2007. Tiny-sync: Tight time synchronization for wireless sensor networks. ACM Trans. Sen. Netw. 3, 2, Article 8 (June 2007). DOI: 10.1145/1240226.1240228
+ * <p>
+ * [2] M. L. Sichitiu and C. Veerarittiphan, "Simple, accurate time synchronization for wireless sensor networks," 2003 IEEE Wireless Communications and Networking, 2003. WCNC 2003., New Orleans, LA, USA, 2003, pp. 1266-1273 vol.2. DOI: 10.1109/WCNC.2003.1200555. URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1200555&isnumber=27029
+ */
 public class TinySyncAlgorithm extends BaseAlgorithm {
     @Override
     void cleanup() {

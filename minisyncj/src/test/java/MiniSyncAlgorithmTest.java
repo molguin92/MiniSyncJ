@@ -17,17 +17,15 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.tests;
-
+import se.kth.molguin.minisync.algorithm.MiniSyncAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import se.kth.molguin.minisync.algorithm.TinySyncAlgorithm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TinySyncAlgorithmTest {
+class MiniSyncAlgorithmTest {
 
-    private TinySyncAlgorithm algo;
+    private MiniSyncAlgorithm algo;
 
     private static double FLOAT_DELTA = 0.001;
     private static double To = -1;
@@ -37,7 +35,7 @@ class TinySyncAlgorithmTest {
 
     @BeforeEach
     void setUp() {
-        algo = new TinySyncAlgorithm();
+        algo = new MiniSyncAlgorithm();
     }
 
     @Test

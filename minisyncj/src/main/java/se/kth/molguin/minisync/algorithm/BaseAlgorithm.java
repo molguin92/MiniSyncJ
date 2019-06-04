@@ -91,7 +91,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
         assert this.drift.value >= 0;
     }
 
-    private LowPoint addLowPoint(double Tb, double To) {
+    protected LowPoint addLowPoint(double Tb, double To) {
         LowPoint lp = new LowPoint(Tb, To);
         // calculate new constraints
         for (HighPoint hp : this.high_points)
@@ -101,7 +101,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
         return lp;
     }
 
-    private HighPoint addHighPoint(double Tb, double Tr) {
+    protected HighPoint addHighPoint(double Tb, double Tr) {
         HighPoint hp = new HighPoint(Tb, Tr);
         // calculate new constraints
         for (LowPoint lp : this.low_points)
@@ -111,7 +111,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
         return hp;
     }
 
-    private boolean addConstraint(LowPoint lp, HighPoint hp) {
+    protected boolean addConstraint(LowPoint lp, HighPoint hp) {
         if (lp.x == hp.x) return false;
 
         Line constraint = new Line(lp, hp);

@@ -19,5 +19,43 @@
 
 package se.kth.molguin.minisync.algorithm;
 
-public abstract class MiniSyncAlgorithm extends BaseAlgorithm {
+import se.kth.molguin.minisync.constraint.HighPoint;
+import se.kth.molguin.minisync.constraint.LowPoint;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MiniSyncAlgorithm extends BaseAlgorithm {
+
+    private Map<LowPoint, Map<LowPoint, Double>> low_slopes;
+    private Map<HighPoint, Map<HighPoint, Double>> high_slopes;
+
+    public MiniSyncAlgorithm() {
+        super();
+        this.low_slopes = new HashMap<>();
+        this.high_slopes = new HashMap<>();
+    }
+
+    @Override
+    void cleanup() {
+    }
+
+    @Override
+    protected LowPoint addLowPoint(double Tb, double To) {
+        LowPoint lp = super.addLowPoint(Tb, To);
+        // calculate low slopes
+        return lp;
+    }
+
+    @Override
+    protected HighPoint addHighPoint(double Tb, double Tr) {
+        HighPoint hp = new HighPoint(Tb, Tr);
+        // calculate new constraints
+        for (LowPoint lp : this.low_points)
+            this.addConstraint(lp, hp);
+
+        this.high_points.add(hp);
+        return hp;
+    }
 }
+

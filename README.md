@@ -20,7 +20,7 @@ IEEE Wireless Communications and Networking, 2003. WCNC 2003., New Orleans, LA, 
 ## Copyright
  [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Code is Copyright© (2019 -) of Manuel Olguín Muñoz \<manuel@olguin.se\>, provided under an Apache v2.0 License.
+Code is Copyright© (2019 -) of Manuel Olguín Muñoz \<manuel@olguin.se\>\<molguin@kth.se\>, provided under an Apache v2.0 License.
 See [LICENSE](LICENSE) for details.
 
 The TinySync and MiniSync algorithms are owned by the authors of the referenced papers [1, 2].

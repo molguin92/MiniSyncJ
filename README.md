@@ -1,7 +1,9 @@
 # MiniSyncJ
 
-Reference implementation in Java of the MiniSync/TinySync time synchronization algorithms detailed in [\[1, 2\]](#references).
+Reference implementation in Java 8 (*) of the MiniSync/TinySync time synchronization algorithms detailed in [\[1, 2\]](#references).
 Note that this implementation is still pretty naive and probably should not be used for anything critical (yet).
+
+`(*) The reason for this outdated choice of Java is to maintain compatibility with old versions of Android...`
 
 ## Usage
 % TODO

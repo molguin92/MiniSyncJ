@@ -50,7 +50,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
         this.high_points = new TreeSet<>();
 
         this.offset = new Value();
-        this.drift = new Value();
+        this.drift = new Value(1.0, 0.0);
 
         this.diff_factor = Double.MAX_VALUE;
         this.processed_timestamps = 0;
@@ -88,7 +88,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
         this.drift.error = (current_low.A - current_high.A) / 2;
         this.offset.error = (current_high.B - current_low.B) / 2;
 
-        assert this.drift.value > 0;
+        assert this.drift.value >= 0;
     }
 
     private LowPoint addLowPoint(double Tb, double To) {
@@ -111,7 +111,9 @@ abstract class BaseAlgorithm implements IAlgorithm {
         return hp;
     }
 
-    private Line addConstraint(LowPoint lp, HighPoint hp) {
+    private boolean addConstraint(LowPoint lp, HighPoint hp) {
+        if (lp.x == hp.x) return false;
+
         Line constraint = new Line(lp, hp);
         switch (constraint.type) {
             case LOW_TO_HIGH: {
@@ -124,7 +126,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
             }
         }
 
-        return constraint;
+        return true;
     }
 
     abstract void cleanup();
@@ -133,9 +135,13 @@ abstract class BaseAlgorithm implements IAlgorithm {
         double value;
         double error;
 
+        Value(double v, double e) {
+            this.value = v;
+            this.error = e;
+        }
+
         Value() {
-            this.value = 0;
-            this.error = 0;
+            this(0, 0);
         }
     }
 

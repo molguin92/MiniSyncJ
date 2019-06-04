@@ -1,8 +1,3 @@
-import org.junit.jupiter.api.Test;
-import se.kth.molguin.minisync.algorithm.IAlgorithm;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**********************************************************************************************************************
  * Copyright (c) 2019 Manuel Olguín Muñoz <molguin@kth.se>                                                            *
  *                                                                                                                    *
@@ -22,10 +17,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
+import org.junit.jupiter.api.Test;
+import se.kth.molguin.minisync.algorithm.IAlgorithm;
+
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 abstract class BaseAlgorithmTest {
     IAlgorithm algo;
 
+    private static double NUM_LOOPS = 50;
     private static double FLOAT_DELTA = 0.001;
+
     private static double To = -1;
     private static double Tbr = 0;
     private static double Tbt = 1;
@@ -61,5 +65,40 @@ abstract class BaseAlgorithmTest {
         assertEquals(expected_drift_error, algo.getDriftError(), FLOAT_DELTA);
         assertEquals(expected_offset, algo.getOffset(), FLOAT_DELTA);
         assertEquals(expected_offset_error, algo.getOffsetError(), FLOAT_DELTA);
+    }
+
+    static double currentTimeMicroSeconds() {
+        return System.nanoTime() / 1000.0d;
+    }
+
+    @Test
+    void increasingAccuracy() {
+        // errors should always decrease
+        double T0 = currentTimeMicroSeconds();
+        double current_drift_error = Double.MAX_VALUE;
+        double current_offset_error = Double.MAX_VALUE;
+        Random r = new Random(System.nanoTime());
+        for (int i = 0; i < NUM_LOOPS; ++i) {
+            try {
+                Thread.sleep(r.nextInt(10));
+                double To = currentTimeMicroSeconds() - T0;
+                Thread.sleep(r.nextInt(10));
+                double Tb = currentTimeMicroSeconds() - T0;
+                Thread.sleep(r.nextInt(10));
+                double Tr = currentTimeMicroSeconds() - T0;
+
+                algo.addDataPoint(To, Tb, Tr);
+
+                if (i >= 1) { // algorithm needs at least two points
+                    assertTrue(algo.getDriftError() <= current_drift_error);
+                    assertTrue(algo.getOffsetError() <= current_offset_error);
+
+                    current_drift_error = algo.getDriftError();
+                    current_offset_error = algo.getOffsetError();
+                }
+            } catch (InterruptedException ignored) {
+            }
+
+        }
     }
 }

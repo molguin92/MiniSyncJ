@@ -20,13 +20,45 @@
 package se.kth.molguin.minisync.algorithm;
 
 public interface IAlgorithm {
+
+    /**
+     * Adds a data point to the algorithm and recalculates the estimates.
+     *
+     * @param To Outgoing beacon timestamp.
+     * @param Tb Reply timestamp on the remote peer.
+     * @param Tr Reply reception timestamp.
+     */
     void addDataPoint(double To, double Tb, double Tr);
 
+    /**
+     * Get the current estimated relative clock drift.
+     * If the number of samples provided to the algorithm so far is less than 2, returns 1.0.
+     *
+     * @return The relative clock drift.
+     */
     double getDrift();
 
+    /**
+     * Get the current estimated relative clock drift error.
+     * If the number of samples provided to the algorithm so far is less than 2, returns o.0.
+     *
+     * @return The relative clock drift error.
+     */
     double getDriftError();
 
+    /**
+     * Get the current estimated relative clock offset.
+     * If the number of samples provided to the algorithm so far is less than 2, returns 0.0.
+     *
+     * @return The relative clock offset.
+     */
     double getOffset();
 
+    /**
+     * Get the current estimated relative clock offset error.
+     * If the number of samples provided to the algorithm so far is less than 2, returns 0.0.
+     *
+     * @return The relative clock offset error.
+     */
     double getOffsetError();
 }

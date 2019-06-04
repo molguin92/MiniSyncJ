@@ -61,4 +61,13 @@ public interface IAlgorithm {
      * @return The relative clock offset error.
      */
     double getOffsetError();
+
+
+    /**
+     * Get the number of processed data points so far. Note that this does not equal the number of data points currently
+     * stored in the algorithm, but rather the total number of data points seen so far.
+     *
+     * @return The number of processed data points so far.
+     */
+    int numDataPoints();
 }

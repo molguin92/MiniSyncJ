@@ -41,7 +41,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
     private Value drift;
 
     private double diff_factor;
-    private int processed_timestamps;
+    private int processed_datapoints;
 
     protected BaseAlgorithm() {
         this.low_constraints = new HashSet<>();
@@ -53,7 +53,7 @@ abstract class BaseAlgorithm implements IAlgorithm {
         this.drift = new Value(1.0, 0.0);
 
         this.diff_factor = Double.MAX_VALUE;
-        this.processed_timestamps = 0;
+        this.processed_datapoints = 0;
     }
 
     @Override
@@ -61,9 +61,9 @@ abstract class BaseAlgorithm implements IAlgorithm {
         // add points to algorithm
         this.addLowPoint(Tb, To);
         this.addHighPoint(Tb, Tr);
-        ++this.processed_timestamps;
+        ++this.processed_datapoints;
 
-        if (this.processed_timestamps > 1)
+        if (this.processed_datapoints > 1)
             this.recalculateEstimates();
     }
 
@@ -163,5 +163,10 @@ abstract class BaseAlgorithm implements IAlgorithm {
     @Override
     public double getOffsetError() {
         return this.offset.error;
+    }
+
+    @Override
+    public int numDataPoints() {
+        return this.processed_datapoints;
     }
 }

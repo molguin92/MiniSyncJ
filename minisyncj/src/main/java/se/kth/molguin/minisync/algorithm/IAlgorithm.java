@@ -19,7 +19,7 @@
 
 package se.kth.molguin.minisync.algorithm;
 
-interface IAlgorithm {
+public interface IAlgorithm {
     void addDataPoint(double To, double Tb, double Tr);
 
     double getDrift();

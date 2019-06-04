@@ -1,7 +1,5 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import se.kth.molguin.minisync.algorithm.BaseAlgorithm;
-import se.kth.molguin.minisync.algorithm.TinySyncAlgorithm;
+import se.kth.molguin.minisync.algorithm.IAlgorithm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  **********************************************************************************************************************/
 
 abstract class BaseAlgorithmTest {
-    BaseAlgorithm algo;
+    IAlgorithm algo;
 
     private static double FLOAT_DELTA = 0.001;
     private static double To = -1;

@@ -27,7 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-public abstract class BaseAlgorithm implements IAlgorithm {
+abstract class BaseAlgorithm implements IAlgorithm {
 
     protected final Set<Line> low_constraints;
     protected final Set<Line> high_constraints;

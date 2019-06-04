@@ -1,5 +1,7 @@
 # MiniSyncJ
 
+[![Release](https://jitpack.io/v/molguin92/MiniSyncJ.svg)](https://jitpack.io/molguin92/MiniSyncJ)
+
 Reference implementation in Java 8 (*) of the MiniSync/TinySync time synchronization algorithms detailed in [\[1, 2\]](#references).
 Note that this implementation is still pretty naive and probably should not be used for anything critical (yet).
 

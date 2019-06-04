@@ -23,52 +23,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MiniSyncAlgorithmTest {
-
-    private MiniSyncAlgorithm algo;
-
-    private static double FLOAT_DELTA = 0.001;
-    private static double To = -1;
-    private static double Tbr = 0;
-    private static double Tbt = 1;
-    private static double Tr = 2;
-
+class MiniSyncAlgorithmTest extends BaseAlgorithmTest {
     @BeforeEach
     void setUp() {
-        algo = new MiniSyncAlgorithm();
+        this.algo = new MiniSyncAlgorithm();
     }
-
-    @Test
-    void base() {
-        assertEquals(1.0, algo.getDrift(), FLOAT_DELTA);
-        assertEquals(0.0, algo.getDriftError(), FLOAT_DELTA);
-        assertEquals(0.0, algo.getOffset(), FLOAT_DELTA);
-        assertEquals(0.0, algo.getOffsetError(), FLOAT_DELTA);
-    }
-
-    @Test
-    void addDataPoints() {
-
-        // initial offset and drift
-        // initial coordinates are on x = 0, so max_offset and min_offset should simply be the y coordinates
-        double high_drift = (To - Tr) / (Tbt - Tbr);
-        double low_drift = (Tr - To) / (Tbt - Tbr);
-        double expected_drift = (high_drift + low_drift) / 2.0;
-        double expected_drift_error = (low_drift - high_drift) / 2.0;
-
-        double expected_offset = (To + Tr) / 2.0;
-        double expected_offset_error = (Tr - To) / 2.0;
-
-        algo.addDataPoint(To, Tbr, Tr);
-        // first point does not trigger update
-        base();
-
-        algo.addDataPoint(To, Tbt, Tr);
-        assertEquals(expected_drift, algo.getDrift(), FLOAT_DELTA);
-        assertEquals(expected_drift_error, algo.getDriftError(), FLOAT_DELTA);
-        assertEquals(expected_offset, algo.getOffset(), FLOAT_DELTA);
-        assertEquals(expected_offset_error, algo.getOffsetError(), FLOAT_DELTA);
-    }
-
-
 }

@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.github.molguin92'
-version '0.1.2-alpha'
+version 'v0.1.2-alpha'
 
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8

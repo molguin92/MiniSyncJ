@@ -1,15 +1,17 @@
 plugins {
     id 'java'
+    id 'maven'
 }
 
 group 'se.kth.molguin'
 version '0.1.0-alpha'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.8 // java 8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    maven { url "http://mvnrepository.com/artifact" }
+    maven { url 'http://mvnrepository.com/artifact' }
 }
 
 test {
@@ -20,4 +22,39 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     implementation 'org.apache.commons:commons-collections4:4.3'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+// To specify a license in the pom:
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = '5.1.1'
+    distributionType = Wrapper.DistributionType.ALL
 }

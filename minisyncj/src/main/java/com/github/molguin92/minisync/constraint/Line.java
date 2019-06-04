@@ -17,19 +17,43 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.constraint;
+package com.github.molguin92.minisync.constraint;
 
-abstract class Point implements Comparable<Point> {
-    public final double x;
-    public final double y;
-
-    Point(double x, double y) {
-        this.x = x;
-        this.y = y;
+public class Line {
+    public enum TYPE {
+        LOW_TO_HIGH,
+        HIGH_TO_LOW;
     }
 
-    @Override
-    public int compareTo(Point o) {
-        return Double.compare(this.x, o.x);
+    public final TYPE type;
+    public final HighPoint highPoint;
+    public final LowPoint lowPoint;
+
+    public final double A;
+    public final double B;
+
+    public Line(LowPoint low, HighPoint high) {
+
+        assert low.x != high.x; // TODO maybe not use assertions
+
+        this.lowPoint = low;
+        this.highPoint = high;
+
+        this.A = (low.y - high.y) / (low.x - high.x);
+        this.B = low.y - (this.A * low.x);
+
+        if (low.x < high.x)
+            this.type = TYPE.LOW_TO_HIGH;
+        else
+            this.type = TYPE.HIGH_TO_LOW;
     }
+
+    public Line(HighPoint high, LowPoint low) {
+        this(low, high);
+    }
+
+    public boolean equals(Line o) {
+        return this.A == o.A && this.B == o.B;
+    }
+
 }

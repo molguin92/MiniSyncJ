@@ -17,9 +17,8 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-import se.kth.molguin.minisync.algorithm.MiniSyncAlgorithm;
+import com.github.molguin92.minisync.algorithm.MiniSyncAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

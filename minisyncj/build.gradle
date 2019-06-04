@@ -3,8 +3,8 @@ plugins {
     id 'maven'
 }
 
-group 'se.kth.molguin'
-version '0.1.0-alpha'
+group 'com.github.molguin92'
+version '0.1.1-alpha'
 
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8

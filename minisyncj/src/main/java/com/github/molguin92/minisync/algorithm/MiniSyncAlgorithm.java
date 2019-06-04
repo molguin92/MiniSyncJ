@@ -17,11 +17,11 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.algorithm;
+package com.github.molguin92.minisync.algorithm;
 
-import se.kth.molguin.minisync.constraint.HighPoint;
-import se.kth.molguin.minisync.constraint.Line;
-import se.kth.molguin.minisync.constraint.LowPoint;
+import com.github.molguin92.minisync.constraint.HighPoint;
+import com.github.molguin92.minisync.constraint.Line;
+import com.github.molguin92.minisync.constraint.LowPoint;
 import org.apache.commons.collections4.map.MultiKeyMap;
 
 import java.util.HashSet;

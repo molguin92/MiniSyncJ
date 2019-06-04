@@ -18,7 +18,7 @@
  **********************************************************************************************************************/
 
 import org.junit.jupiter.api.Test;
-import se.kth.molguin.minisync.algorithm.IAlgorithm;
+import com.github.molguin92.minisync.algorithm.IAlgorithm;
 
 import java.util.Random;
 

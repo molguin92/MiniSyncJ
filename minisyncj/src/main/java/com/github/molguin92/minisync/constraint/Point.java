@@ -17,10 +17,19 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.constraint;
+package com.github.molguin92.minisync.constraint;
 
-public class HighPoint extends Point {
-    public HighPoint(double x, double y) {
-        super(x, y);
+abstract class Point implements Comparable<Point> {
+    public final double x;
+    public final double y;
+
+    Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        return Double.compare(this.x, o.x);
     }
 }

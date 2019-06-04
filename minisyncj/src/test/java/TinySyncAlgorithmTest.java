@@ -18,7 +18,7 @@
  **********************************************************************************************************************/
 
 import org.junit.jupiter.api.BeforeEach;
-import se.kth.molguin.minisync.algorithm.TinySyncAlgorithm;
+import com.github.molguin92.minisync.algorithm.TinySyncAlgorithm;
 
 class TinySyncAlgorithmTest extends BaseAlgorithmTest {
     @BeforeEach

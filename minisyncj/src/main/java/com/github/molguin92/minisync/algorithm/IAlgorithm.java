@@ -17,43 +17,57 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.constraint;
+package com.github.molguin92.minisync.algorithm;
 
-public class Line {
-    public enum TYPE {
-        LOW_TO_HIGH,
-        HIGH_TO_LOW;
-    }
+public interface IAlgorithm {
 
-    public final TYPE type;
-    public final HighPoint highPoint;
-    public final LowPoint lowPoint;
+    /**
+     * Adds a data point to the algorithm and recalculates the estimates.
+     *
+     * @param To Outgoing beacon timestamp.
+     * @param Tb Reply timestamp on the remote peer.
+     * @param Tr Reply reception timestamp.
+     */
+    void addDataPoint(double To, double Tb, double Tr);
 
-    public final double A;
-    public final double B;
+    /**
+     * Get the current estimated relative clock drift.
+     * If the number of samples provided to the algorithm so far is less than 2, returns 1.0.
+     *
+     * @return The relative clock drift.
+     */
+    double getDrift();
 
-    public Line(LowPoint low, HighPoint high) {
+    /**
+     * Get the current estimated relative clock drift error.
+     * If the number of samples provided to the algorithm so far is less than 2, returns o.0.
+     *
+     * @return The relative clock drift error.
+     */
+    double getDriftError();
 
-        assert low.x != high.x; // TODO maybe not use assertions
+    /**
+     * Get the current estimated relative clock offset.
+     * If the number of samples provided to the algorithm so far is less than 2, returns 0.0.
+     *
+     * @return The relative clock offset.
+     */
+    double getOffset();
 
-        this.lowPoint = low;
-        this.highPoint = high;
+    /**
+     * Get the current estimated relative clock offset error.
+     * If the number of samples provided to the algorithm so far is less than 2, returns 0.0.
+     *
+     * @return The relative clock offset error.
+     */
+    double getOffsetError();
 
-        this.A = (low.y - high.y) / (low.x - high.x);
-        this.B = low.y - (this.A * low.x);
 
-        if (low.x < high.x)
-            this.type = TYPE.LOW_TO_HIGH;
-        else
-            this.type = TYPE.HIGH_TO_LOW;
-    }
-
-    public Line(HighPoint high, LowPoint low) {
-        this(low, high);
-    }
-
-    public boolean equals(Line o) {
-        return this.A == o.A && this.B == o.B;
-    }
-
+    /**
+     * Get the number of processed data points so far. Note that this does not equal the number of data points currently
+     * stored in the algorithm, but rather the total number of data points seen so far.
+     *
+     * @return The number of processed data points so far.
+     */
+    int numDataPoints();
 }

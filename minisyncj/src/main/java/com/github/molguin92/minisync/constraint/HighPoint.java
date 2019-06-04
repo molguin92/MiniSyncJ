@@ -17,10 +17,10 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.constraint;
+package com.github.molguin92.minisync.constraint;
 
-public class LowPoint extends Point {
-    public LowPoint(double x, double y) {
+public class HighPoint extends Point {
+    public HighPoint(double x, double y) {
         super(x, y);
     }
 }

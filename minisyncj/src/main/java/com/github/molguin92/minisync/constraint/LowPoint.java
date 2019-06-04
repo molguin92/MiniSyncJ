@@ -17,57 +17,10 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
-package se.kth.molguin.minisync.algorithm;
+package com.github.molguin92.minisync.constraint;
 
-public interface IAlgorithm {
-
-    /**
-     * Adds a data point to the algorithm and recalculates the estimates.
-     *
-     * @param To Outgoing beacon timestamp.
-     * @param Tb Reply timestamp on the remote peer.
-     * @param Tr Reply reception timestamp.
-     */
-    void addDataPoint(double To, double Tb, double Tr);
-
-    /**
-     * Get the current estimated relative clock drift.
-     * If the number of samples provided to the algorithm so far is less than 2, returns 1.0.
-     *
-     * @return The relative clock drift.
-     */
-    double getDrift();
-
-    /**
-     * Get the current estimated relative clock drift error.
-     * If the number of samples provided to the algorithm so far is less than 2, returns o.0.
-     *
-     * @return The relative clock drift error.
-     */
-    double getDriftError();
-
-    /**
-     * Get the current estimated relative clock offset.
-     * If the number of samples provided to the algorithm so far is less than 2, returns 0.0.
-     *
-     * @return The relative clock offset.
-     */
-    double getOffset();
-
-    /**
-     * Get the current estimated relative clock offset error.
-     * If the number of samples provided to the algorithm so far is less than 2, returns 0.0.
-     *
-     * @return The relative clock offset error.
-     */
-    double getOffsetError();
-
-
-    /**
-     * Get the number of processed data points so far. Note that this does not equal the number of data points currently
-     * stored in the algorithm, but rather the total number of data points seen so far.
-     *
-     * @return The number of processed data points so far.
-     */
-    int numDataPoints();
+public class LowPoint extends Point {
+    public LowPoint(double x, double y) {
+        super(x, y);
+    }
 }

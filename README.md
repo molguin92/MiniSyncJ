@@ -8,7 +8,26 @@ Note that this implementation is still pretty naive and probably should not be u
 `(*) The reason for this outdated choice of Java is to maintain compatibility with old versions of Android...`
 
 ## Usage
-% TODO
+### Gradle / Maven
+This library is published through [Jitpack.io](https://jitpack.io) and can thus easily be integrated into existing Gradle projects:
+
+```gradle
+// Add Jitpack.io to the project repositories:
+repositories {
+// ...
+    maven { url 'https://jitpack.io' }
+}
+// add the library as a build dependency
+dependencies {
+// ...
+    implementation 'com.github.molguin92:MiniSyncJ:v0.1.1-alpha'
+}
+```
+
+See additional documentation on [the project page at Jitpack.io](https://jitpack.io/#molguin92/MiniSyncJ).
+
+### Manual
+Download a compiled .jar from the [Releases](https://github.com/molguin92/MiniSyncJ/releases) page and download it to a folder in your projects' classpath.
 
 ## References
 [1] S. Yoon, C. Veerarittiphan, and M. L. Sichitiu. 2007. Tiny-sync: Tight time synchronization for wireless sensor 

@@ -31,8 +31,8 @@ abstract class BaseAlgorithm implements IAlgorithm {
 
     protected final Set<Line> low_constraints;
     protected final Set<Line> high_constraints;
-    protected final Set<HighPoint> high_points;
-    protected final Set<LowPoint> low_points;
+    protected final TreeSet<HighPoint> high_points;
+    protected final TreeSet<LowPoint> low_points;
 
     protected Line current_high;
     protected Line current_low;

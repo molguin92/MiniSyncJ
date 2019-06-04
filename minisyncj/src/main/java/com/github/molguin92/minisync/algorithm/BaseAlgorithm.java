@@ -42,6 +42,8 @@ abstract class BaseAlgorithm implements IAlgorithm {
 
     private double diff_factor;
     private int processed_datapoints;
+    private double minimum_local_delay; // (for instance, one way through the network stack)
+    private double minimum_remote_delay;
 
     protected BaseAlgorithm() {
         this.low_constraints = new HashSet<>();
@@ -54,10 +56,17 @@ abstract class BaseAlgorithm implements IAlgorithm {
 
         this.diff_factor = Double.MAX_VALUE;
         this.processed_datapoints = 0;
+        this.minimum_local_delay = 0.0d;
+        this.minimum_remote_delay = 0.0d;
     }
 
     @Override
     public void addDataPoint(double To, double Tb, double Tr) {
+        // adjust delays
+        To += this.minimum_local_delay;
+        Tb -= this.minimum_remote_delay;
+        Tr -= this.minimum_local_delay;
+
         // add points to algorithm
         this.addLowPoint(Tb, To);
         this.addHighPoint(Tb, Tr);
@@ -168,5 +177,21 @@ abstract class BaseAlgorithm implements IAlgorithm {
     @Override
     public int numDataPoints() {
         return this.processed_datapoints;
+    }
+
+    @Override
+    public void setMinimumDelay(double d) {
+        this.minimum_remote_delay = d;
+        this.minimum_local_delay = d;
+    }
+
+    @Override
+    public void setMinimumLocalDelay(double d) {
+        this.minimum_local_delay = d;
+    }
+
+    @Override
+    public void setMinimumRemoteDelay(double d) {
+        this.minimum_remote_delay = d;
     }
 }

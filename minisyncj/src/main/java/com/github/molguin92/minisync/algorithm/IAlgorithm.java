@@ -70,4 +70,28 @@ public interface IAlgorithm {
      * @return The number of processed data points so far.
      */
     int numDataPoints();
+
+    /**
+     * Set the minimum possible delay in the algorithm, for more accurate estimations.
+     * This method sets the minimum local and remote delays to the provided value.
+     *
+     * @param d Minimum possible delay in microseconds.
+     */
+    void setMinimumDelay(double d);
+
+    /**
+     * Set the minimum possible delay in the algorithm, for more accurate estimations.
+     * This method sets the minimum local delay to the provided value. The local delay is used to tweak timestamps associated with the local clock.
+     *
+     * @param d Minimum possible delay in microseconds.
+     */
+    void setMinimumLocalDelay(double d);
+
+    /**
+     * Set the minimum possible delay in the algorithm, for more accurate estimations.
+     * This method sets the minimum remote delay to the provided value. The remote delay is used to tweak timestamps associated with the remote reference clock.
+     *
+     * @param d Minimum possible delay in microseconds.
+     */
+    void setMinimumRemoteDelay(double d);
 }

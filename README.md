@@ -27,7 +27,7 @@ dependencies {
 See additional documentation on [the project page at Jitpack.io](https://jitpack.io/#molguin92/MiniSyncJ).
 
 ### Manual
-Download a compiled .jar from the [Releases](https://github.com/molguin92/MiniSyncJ/releases) page and download it to a folder in your projects' classpath.
+Download a compiled .jar from the [Releases](https://github.com/molguin92/MiniSyncJ/releases) page and put it in a folder in your projects' classpath.
 
 ## References
 [1] S. Yoon, C. Veerarittiphan, and M. L. Sichitiu. 2007. Tiny-sync: Tight time synchronization for wireless sensor 

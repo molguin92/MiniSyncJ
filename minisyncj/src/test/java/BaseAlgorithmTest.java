@@ -18,14 +18,14 @@
  **********************************************************************************************************************/
 
 import org.junit.jupiter.api.Test;
-import com.github.molguin92.minisync.algorithm.IAlgorithm;
+import com.github.molguin92.minisync.algorithm.TimeSyncAlgorithm;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class BaseAlgorithmTest {
-    IAlgorithm algo;
+    TimeSyncAlgorithm algo;
 
     private static double NUM_LOOPS = 50;
     private static double FLOAT_DELTA = 0.001;

@@ -19,7 +19,7 @@
 
 package com.github.molguin92.minisync.algorithm;
 
-public interface IAlgorithm {
+public interface TimeSyncAlgorithm {
 
     /**
      * Adds a data point to the algorithm and recalculates the estimates.

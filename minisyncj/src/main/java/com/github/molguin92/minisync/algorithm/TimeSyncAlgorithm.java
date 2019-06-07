@@ -28,7 +28,7 @@ public interface TimeSyncAlgorithm {
      * @param Tb Reply timestamp on the remote peer.
      * @param Tr Reply reception timestamp.
      */
-    void addDataPoint(double To, double Tb, double Tr);
+    void addDataPoint(double To, double Tb, double Tr) throws TimeSyncAlgorithmException;
 
     /**
      * Get the current estimated relative clock drift.

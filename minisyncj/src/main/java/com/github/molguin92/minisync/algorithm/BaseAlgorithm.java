@@ -61,7 +61,7 @@ abstract class BaseAlgorithm implements TimeSyncAlgorithm {
     }
 
     @Override
-    public void addDataPoint(double To, double Tb, double Tr) {
+    public void addDataPoint(double To, double Tb, double Tr) throws TimeSyncAlgorithmException {
         // adjust delays
         To += this.minimum_local_delay;
         Tb -= this.minimum_remote_delay;
@@ -76,7 +76,7 @@ abstract class BaseAlgorithm implements TimeSyncAlgorithm {
             this.recalculateEstimates();
     }
 
-    private void recalculateEstimates() {
+    private void recalculateEstimates() throws TimeSyncAlgorithmException {
 
         double tmp_diff;
         for (Line low : low_constraints) {
@@ -97,7 +97,10 @@ abstract class BaseAlgorithm implements TimeSyncAlgorithm {
         this.drift.error = (current_low.A - current_high.A) / 2;
         this.offset.error = (current_high.B - current_low.B) / 2;
 
-        assert this.drift.value >= 0;
+        if (this.drift.value < 0)
+            throw new TimeSyncAlgorithmException(
+                    "Drift must be >= 0 for monotonically increasing clocks (current drift value: %f)",
+                    this.drift.value);
     }
 
     protected LowPoint addLowPoint(double Tb, double To) {

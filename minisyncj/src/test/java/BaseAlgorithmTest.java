@@ -17,6 +17,7 @@
  * limitations under the License.                                                                                     *
  **********************************************************************************************************************/
 
+import com.github.molguin92.minisync.algorithm.TimeSyncAlgorithmException;
 import org.junit.jupiter.api.Test;
 import com.github.molguin92.minisync.algorithm.TimeSyncAlgorithm;
 
@@ -44,7 +45,7 @@ abstract class BaseAlgorithmTest {
     }
 
     @Test
-    void addDataPoints() {
+    void addDataPoints() throws TimeSyncAlgorithmException {
 
         // initial offset and drift
         // initial coordinates are on x = 0, so max_offset and min_offset should simply be the y coordinates
@@ -72,7 +73,7 @@ abstract class BaseAlgorithmTest {
     }
 
     @Test
-    void increasingAccuracy() {
+    void increasingAccuracy() throws TimeSyncAlgorithmException {
         // errors should always decrease
         double T0 = currentTimeMicroSeconds();
         double current_drift_error = Double.MAX_VALUE;
